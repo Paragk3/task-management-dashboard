@@ -1,10 +1,9 @@
-// src/components/Auth.tsx
+// components/Auth.tsx
 'use client';
 
 import { useState } from 'react';
-import { User } from '../types/auth';
 import axios from 'axios';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 
 const Auth: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -23,16 +22,16 @@ const Auth: React.FC = () => {
         response = await axios.post('/api/auth/signup', { email, password });
       }
       const token = response.data.token;
-      localStorage.setItem('token', token);
-      router.push('/tasks');
+      // Set the token in cookies or local storage
+      document.cookie = `token=${token}; path=/`;
+      router.push('/tasks'); // Redirect to protected route after successful login
     } catch (error) {
       console.error(error);
-      // Handle errors appropriately (e.g., display an error message)
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div>
       <h1 className="text-3xl font-bold mb-4">{isLogin ? 'Login' : 'Signup'}</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
