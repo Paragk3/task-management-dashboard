@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Task } from '../types/task';
 import axios from 'axios';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import {  Draggable, Droppable } from 'react-beautiful-dnd';
 
 const KanbanBoard: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -26,17 +26,17 @@ const KanbanBoard: React.FC = () => {
     fetchTasks();
   }, []);
 
-  const handleOnDragEnd = (result: any) => {
-    if (!result.destination) return;
+  // const handleOnDragEnd = (result: any) => {
+  //   if (!result.destination) return;
 
-    const items = Array.from(tasks);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
+  //   const items = Array.from(tasks);
+  //   const [reorderedItem] = items.splice(result.source.index, 1);
+  //   items.splice(result.destination.index, 0, reorderedItem);
 
-    setTasks(items);
+  //   setTasks(items);
 
-    // Update task status on the backend (add this logic)
-  };
+  //   // Update task status on the backend (add this logic)
+  // };
 
   return (
     <div className="container mx-auto p-4">
